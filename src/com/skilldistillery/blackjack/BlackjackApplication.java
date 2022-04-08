@@ -24,31 +24,34 @@ public class BlackjackApplication {
 		deck.shuffleDeck();
 		d.dealStartingHands(deck, d, p);
 
-		showCurrentStanding(d, p);
+		showDealerStanding(d);
+		showPlayerStanding(p);
 
 	}
 
-	public void showCurrentStanding(Dealer d, Player p) {
+	public void showDealerStanding(Dealer d) {
 		System.out.print("Dealer shows:\n\t");
 		System.out.println(d.showHand());
 		System.out.println("\tHand value: " + d.getHandValueNoBlind() + " (+ blind)");
-//		System.out.println(d.getHandSize());
+	}
+
+	public void showPlayerStanding(Player p) {
 		System.out.print("You show:\n\t");
 		System.out.print(p.showHand());
 		System.out.print("\n\tHand value: " + p.getHandValue());
 	}
 
-	public void displayMenu(Deck deck, Dealer d, Player p) {
+	public void playerTurn(Deck deck, Dealer d, Player p) {
 		String choice = "";
 		System.out.println("(S)tand or (H)it?");
 		do {
 			try {
 				choice = kb.next().toUpperCase();
 				switch (choice) {
-				case H:
+				case "H":
 					d.dealCardToPlayer(deck, p);
 					break;
-				case S:
+				case "S":
 					break;
 				}
 			} catch (InputMismatchException e) {
@@ -61,6 +64,9 @@ public class BlackjackApplication {
 
 	public void dealerTurn(Deck deck, Dealer d, Player p) {
 		do {
+			System.out.println("Dealer is drawing...");
+			d.dealCardToSelf(deck);
+			showDealerStanding(d);
 
 		} while (d.getHandValueWithBlind() < 17);
 	}
