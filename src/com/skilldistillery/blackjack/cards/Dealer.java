@@ -28,7 +28,7 @@ public class Dealer {
 
 	public StringBuilder showHand() {
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < (hand.cards.size() - 1); i++) {
+		for (int i = 1; i < (hand.cards.size()); i++) {
 			sb.append(hand.cards.get(i).toString() + " || ");
 		}
 		sb.append("BLIND");
@@ -36,7 +36,7 @@ public class Dealer {
 	}
 
 	public Card showBlind() {
-		return hand.cards.get(-1);
+		return hand.cards.get(0);
 	}
 
 	public int getHandValueWithBlind() {
@@ -49,7 +49,7 @@ public class Dealer {
 
 	public int getHandValueNoBlind() {
 		int value = 0;
-		for (int i = 0; i < (hand.cards.size() - 1); i++) {
+		for (int i = 1; i < (hand.cards.size()); i++) {
 			value += hand.cards.get(i).getValue();
 		}
 		return value;

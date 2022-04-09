@@ -9,6 +9,8 @@ import com.skilldistillery.blackjack.cards.Player;
 
 public class BlackjackApplication {
 	private Scanner kb = new Scanner(System.in);
+	private boolean dealerWin = false;
+	private boolean playerWin = false;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -69,5 +71,10 @@ public class BlackjackApplication {
 			showDealerStanding(d);
 
 		} while (d.getHandValueWithBlind() < 17);
+		if (d.getHandValueWithBlind() == 21) {
+			dealerWin = true;
+			System.out.println("House wins!");
+			d.
+		}
 	}
 }
