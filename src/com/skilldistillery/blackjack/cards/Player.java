@@ -23,7 +23,12 @@ public class Player {
 		hand.clear();
 	}
 
-	public String showHand() {
-		return hand.cards.get(0).toString() + " || " + hand.cards.get(1).toString();
+	public StringBuilder showHand() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < (hand.cards.size() - 1); i++) {
+			sb.append(hand.cards.get(i).toString() + " || ");
+		}
+		sb.append(hand.cards.get(hand.cards.size() - 1));
+		return sb;
 	}
 }

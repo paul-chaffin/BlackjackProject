@@ -19,19 +19,27 @@ public class Dealer {
 	}
 
 	public void dealCardToSelf(Deck deck) {
-
+		hand.addCard(deck.dealCard());
 	}
 
 	public int getHandSize() {
 		return hand.cards.size();
 	}
 
-	public StringBuilder showHand() {
+	public StringBuilder showHandNoBlind() {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 1; i < (hand.cards.size()); i++) {
 			sb.append(hand.cards.get(i).toString() + " || ");
 		}
 		sb.append("BLIND");
+		return sb;
+	}
+
+	public StringBuilder showHandWithBlind() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < (hand.cards.size()); i++) {
+			sb.append(hand.cards.get(i).toString() + " || ");
+		}
 		return sb;
 	}
 
