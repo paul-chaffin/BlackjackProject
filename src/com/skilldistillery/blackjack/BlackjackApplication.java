@@ -1,16 +1,13 @@
 package com.skilldistillery.blackjack;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.skilldistillery.blackjack.cards.Dealer;
-import com.skilldistillery.blackjack.cards.Deck;
-import com.skilldistillery.blackjack.cards.Player;
+import com.skilldistillery.blackjack.cards.*;
+import com.skilldistillery.entities.Dealer;
+import com.skilldistillery.entities.Player;
 
 public class BlackjackApplication {
 	private Scanner kb = new Scanner(System.in);
-	private boolean dealerWin = false;
-	private boolean playerWin = false;
 	private boolean dealerPlayed = false;
 
 	public static void main(String[] args) {
@@ -58,13 +55,11 @@ public class BlackjackApplication {
 		if (p.getHandValue() == 21 || d.getHandValueWithBlind() == 21) {
 			result = true;
 			if (p.getHandValue() == 21) {
-				playerWin = true;
 				System.out.println(p.showHand());
 				System.out.println("21! You win!");
 				leaveGame();
 			}
 			if (d.getHandValueWithBlind() == 21) {
-				dealerWin = true;
 				System.out.println(d.showHandWithBlind());
 				System.out.println("21! House wins!");
 				leaveGame();
@@ -72,13 +67,11 @@ public class BlackjackApplication {
 		} else if (p.getHandValue() > 21 || d.getHandValueWithBlind() > 21) {
 			result = true;
 			if (p.getHandValue() > 21) {
-				dealerWin = true;
 				System.out.println("You went bust. House wins with a score of " + d.getHandValueWithBlind() + ":");
 				System.out.println("\t" + d.showHandWithBlind());
 				leaveGame();
 			}
 			if (d.getHandValueWithBlind() > 21) {
-				playerWin = true;
 				System.out.println("House busts! You win with a score of " + p.getHandValue());
 				System.out.println(p.showHand());
 				leaveGame();
@@ -89,7 +82,7 @@ public class BlackjackApplication {
 					System.out.println("You win! You were closer to 21 with a score of " + p.getHandValue());
 					leaveGame();
 				} else {
-					dealerWin = true;
+					showDealerStandingWithBlind(d);
 					System.out.println("House wins with a score of " + d.getHandValueWithBlind());
 					leaveGame();
 				}
@@ -119,18 +112,11 @@ public class BlackjackApplication {
 
 		}
 		if (p.getHandValue() == 21) {
-			playerWin = true;
 			keepGoing = false;
 			System.out.println(p.showHand());
 			System.out.println("21! You win!");
 			leaveGame();
-		} else if (p.getHandValue() > 21) {
-			dealerWin = true;
-			keepGoing = false;
-			System.out.println(p.showHand());
-			System.out.println("You went bust with a score of " + p.getHandValue());
-			leaveGame();
-		} else {
+		}  else {
 			dealerTurn(deck, d, p);
 		}
 
@@ -148,19 +134,13 @@ public class BlackjackApplication {
 			} while (d.getHandValueWithBlind() < 17);
 		}
 		if (d.getHandValueWithBlind() == 21) {
-			dealerWin = true;
 			System.out.println("21, House wins!");
 			System.out.println(d.showHandWithBlind());
 			leaveGame();
-		} else if (d.getHandValueWithBlind() > 21) {
-			playerWin = true;
-			System.out.println("House busts! You win with a score of " + p.getHandValue() + ":");
-			System.out.println("\t" + p.showHand());
-			leaveGame();
 		} else {
 			dealerPlayed = true;
-			checkWin(deck, d, p);
 		}
+		checkWin(deck, d, p);
 	}
 
 	public void leaveGame() {

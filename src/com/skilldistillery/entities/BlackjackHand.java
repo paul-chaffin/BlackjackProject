@@ -1,7 +1,9 @@
-package com.skilldistillery.blackjack.cards;
+package com.skilldistillery.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.skilldistillery.blackjack.cards.*;
+import com.skilldistillery.blackjack.cards.Card;
 
 public class BlackjackHand extends Hand {
 	

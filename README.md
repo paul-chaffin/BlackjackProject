@@ -15,8 +15,16 @@ are removed from the round. The round is won when a player reaches 21 or all but
 one player goes bust. Not all rounds end in a win.
 
 ## Technologies/Skills Used
-
+* OOP
+* Enum
+* If/Else
+* Encapsulation
+* Methodology
+* List
 
 ## Lessons Learned
-# BlackjackProject
-# BlackjackProject
+The OO aspect of this project was simpler to implement than other aspects. I ran
+into the most static between the multiple loops running in the program, and
+properly passing information to methods between those loops. Determining where
+in the flow to place condition checks stopped me up for quite a while, and even
+then I had to revisit them to clean them up.

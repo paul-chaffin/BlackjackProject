@@ -1,4 +1,6 @@
-package com.skilldistillery.blackjack.cards;
+package com.skilldistillery.entities;
+
+import com.skilldistillery.blackjack.cards.Card;
 
 public class Player {
 	private Hand hand;
